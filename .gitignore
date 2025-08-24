@@ -1,0 +1,50 @@
+# Vim/Neovim temporary files
+*.swp
+*.swo
+*~
+*.tmp
+*.bak
+.vimrc.local
+.nvimrc.local
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Linux
+.directory
+
+# IDE/Editor files
+.kiro/
+.vscode/
+.idea/
+*.sublime-*
+
+# Logs
+*.log
+
+# Node modules (if using any build tools)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build outputs
+dist/
+build/
+
+# Generated documentation
+doc/tags
+tags
+
+# Temporary test files
+test_*.lua
+temp_*
+
+# OS generated files
+ehthumbs.db
