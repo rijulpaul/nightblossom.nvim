@@ -7,6 +7,7 @@ function M.get(p)
 		TelescopePreviewNormal = { fg = p.fg },
 		TelescopeTitle = { fg = p.pink },
 		TelescopePromptPrefix = { fg = p.pink },
+		TelescopePromptNormal = { fg = p.fg },
 		TelescopeSelection = { fg = p.pink, bg = p.bg_alt },
 		TelescopeSelectionCaret = { fg = p.pink },
 		TelescopeMultiSelection = { fg = p.purple },
