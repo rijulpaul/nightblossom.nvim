@@ -1,5 +1,7 @@
 # 🌸 Nightblossom 🌸
 
+<img src="https://raw.githubusercontent.com/rijulpaul/nightblossom.nvim/refs/heads/assets/transparent.png" />
+
 **Bring the brightness of spring to your editor!**
 
 A beautiful, vibrant Neovim colorscheme inspired by spring blossoms with a soft, dreamy aesthetic.
@@ -8,13 +10,24 @@ A beautiful, vibrant Neovim colorscheme inspired by spring blossoms with a soft,
 
 ---
 
-## **Theme Variants**
+## 🌈 **Theme Variants**
 
 Nightblossom comes with multiple built-in variants:
-- **Spring** (default) Original vibrant spring colors  `:colorscheme nightblossom` 
-- **Sakura** Cherry blossom inspired, warm pink tones  `:colorscheme nightblossom-sakura`
-- **Pastel** Soft, muted colors for gentle viewing  `:colorscheme nightblossom-pastel`
 
+- **🩷 Spring** (default) Original vibrant spring colors
+<img src="https://raw.githubusercontent.com/rijulpaul/nightblossom.nvim/refs/heads/assets/classic.png" />
+
+`:colorscheme nightblossom`
+
+- **🌸 Sakura** Cherry blossom inspired, warm pink tones
+<img src="https://raw.githubusercontent.com/rijulpaul/nightblossom.nvim/refs/heads/assets/sakura.png" />
+
+`:colorscheme nightblossom-sakura`
+
+- **💮 Pastel** Soft, muted colors for gentle viewing
+<img src="https://raw.githubusercontent.com/rijulpaul/nightblossom.nvim/refs/heads/assets/pastel.png" />
+
+`:colorscheme nightblossom-pastel`
 
 ## 📦 Installation
 
@@ -75,7 +88,7 @@ require("nightblossom").setup({
   integrations = {
     treesitter = true,             -- TreeSitter highlighting
   },
-  
+
   -- Override system for custom colors and highlights
   overrides = {
     colors = {
