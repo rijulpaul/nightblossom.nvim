@@ -1,0 +1,548 @@
+*nightblossom.txt*    Nightblossom Neovim Colorscheme Documentation
+
+Author: rijulpaul
+License: MIT
+Version: 1.0
+
+Nightblossom is a beautiful, vibrant Neovim colorscheme inspired by spring
+blossoms with a soft, dreamy aesthetic.
+
+This documentation covers installation, configuration, customization, and
+usage examples for the nightblossom colorscheme.
+
+==============================================================================
+CONTENTS                                                           *nightblossom*
+
+1. Introduction ........................ |nightblossom-introduction|
+2. Installation ........................ |nightblossom-installation|
+3. Quick Start ......................... |nightblossom-quick-start|
+4. Configuration ....................... |nightblossom-configuration|
+5. Theme Variants ...................... |nightblossom-variants|
+6. API Reference ....................... |nightblossom-api|
+7. Plugin Integration .................. |nightblossom-plugins|
+8. Customization ....................... |nightblossom-customization|
+9. Examples ............................ |nightblossom-examples|
+10. Troubleshooting .................... |nightblossom-troubleshooting|
+
+==============================================================================
+INTRODUCTION                                           *nightblossom-introduction*
+
+Nightblossom is a beautiful, vibrant Neovim colorscheme inspired by spring
+blossoms with a soft, dreamy aesthetic. It brings the brightness of spring to
+your editor with carefully crafted color palettes and comprehensive plugin
+support.
+
+Features:
+• Three beautiful theme variants (Spring, Sakura, Pastel)
+• Complete TreeSitter syntax highlighting support
+• Plugin integration for popular Neovim plugins
+• Powerful override system for customization
+• Transparency support
+• Lualine statusline themes
+• Terminal color integration
+
+This theme is a Neovim port of RustedTurnip's night-blossom VSCode theme,
+bringing the same spring-inspired aesthetic to Neovim with enhanced
+functionality and customization options.
+
+==============================================================================
+INSTALLATION                                         *nightblossom-installation*
+
+Using lazy.nvim: ~
+>
+    {
+      "rijulpaul/nightblossom.nvim",
+      name = "nightblossom",
+      lazy = false,
+      priority = 1000,
+      config = function()
+        vim.cmd("colorscheme nightblossom")
+      end,
+    }
+<
+
+Using packer.nvim: ~
+>
+    use {
+      "rijulpaul/nightblossom.nvim",
+      as = "nightblossom",
+      config = function()
+        vim.cmd("colorscheme nightblossom")
+      end
+    }
+<
+
+Using vim-plug: ~
+>
+    Plug 'rijulpaul/nightblossom.nvim'
+    colorscheme nightblossom
+<
+
+Manual installation: ~
+Clone the repository to your Neovim configuration directory and add to your
+init.lua:
+>
+    vim.cmd("colorscheme nightblossom")
+<
+
+==============================================================================
+QUICK START                                           *nightblossom-quick-start*
+
+Basic usage: ~
+>
+    " Set the default spring variant
+    vim.cmd("colorscheme nightblossom")
+    
+    " Or use specific variants
+    vim.cmd("colorscheme nightblossom-sakura")
+    vim.cmd("colorscheme nightblossom-pastel")
+<
+
+Setup with configuration: ~
+>
+    require("nightblossom").setup({
+      variant = "spring",              -- "spring", "sakura", "pastel"
+      transparent = false,             -- Enable background transparency
+      integrations = {
+        treesitter = true,             -- TreeSitter highlighting
+      },
+    })
+<
+
+==============================================================================
+CONFIGURATION                                       *nightblossom-configuration*
+
+The setup function accepts the following configuration options:
+
+variant (string) ~
+    Theme variant to use. Available options:
+    • "spring" - Original vibrant spring colors (default)
+    • "sakura" - Cherry blossom inspired, warm pink tones
+    • "pastel" - Soft, muted colors for gentle viewing
+
+transparent (boolean) ~
+    Enable complete background transparency. When true, the background
+    becomes transparent, allowing your terminal background to show through.
+
+integrations (table) ~
+    Plugin integration settings. Currently supports:
+    • treesitter - TreeSitter syntax highlighting (default: true)
+
+overrides (table) ~
+    Custom color and highlight overrides. See |nightblossom-customization|
+    for detailed information.
+
+Example configuration: ~
+>
+    require("nightblossom").setup({
+      variant = "sakura",
+      transparent = true,
+      integrations = {
+        treesitter = true,
+      },
+      overrides = {
+        colors = {
+          bg = "#0a0a0a",
+          fg = "#ffffff",
+        },
+        highlights = {
+          Normal = { bg = "#1a1a1a", fg = "#e0e0e0" },
+        }
+      }
+    })
+<
+
+==============================================================================
+THEME VARIANTS                                        *nightblossom-variants*
+
+Spring Variant (Default) ~
+    The original vibrant spring colors with bright, energetic tones.
+    Perfect for those who love bold, colorful themes.
+    Command: `:colorscheme nightblossom`
+
+Sakura Variant ~
+    Cherry blossom inspired theme with warm pink and purple tones.
+    Creates a romantic, dreamy atmosphere.
+    Command: `:colorscheme nightblossom-sakura`
+
+Pastel Variant ~
+    Soft, muted colors for gentle viewing. Ideal for long coding
+    sessions and reduced eye strain.
+    Command: `:colorscheme nightblossom-pastel`
+
+Color Palette Overview: ~
+    Each variant provides a complete color palette including:
+    • Core colors (bg, bg_alt, fg, fg_dim)
+    • Accent colors (red, coral, yellow, peach, green, cyan, purple, pink, magenta, grape)
+    • Terminal ANSI colors (ansi_black, ansi_white)
+
+==============================================================================
+API REFERENCE                                           *nightblossom-api*
+
+Core Functions: ~
+
+setup(opts) ~
+    Initialize the colorscheme with configuration options.
+    Returns the current configuration.
+
+load(variant) ~
+    Load the colorscheme with optional variant specification.
+    If no variant is provided, uses the current configuration.
+
+get_variants() ~
+    Returns a table of available theme variants.
+
+set_variant(variant) ~
+    Switch to a different theme variant and reload the colorscheme.
+
+Transparency Functions: ~
+
+toggle_transparency() ~
+    Toggle transparency on/off and reload the colorscheme.
+    Returns the new transparency state.
+
+set_transparency(enabled) ~
+    Set transparency to a specific state.
+    Returns the transparency state.
+
+Override Functions: ~
+
+override_colors(color_overrides) ~
+    Override specific colors in the palette.
+    Returns the current color overrides.
+
+override_highlights(highlight_overrides) ~
+    Override specific highlight groups.
+    Returns the current highlight overrides.
+
+clear_color_overrides() ~
+    Remove all color overrides.
+
+clear_highlight_overrides() ~
+    Remove all highlight overrides.
+
+clear_all_overrides() ~
+    Remove all color and highlight overrides.
+
+get_color_overrides() ~
+    Returns the current color overrides.
+
+get_highlight_overrides() ~
+    Returns the current highlight overrides.
+
+get_palette() ~
+    Returns the current color palette.
+
+Example API usage: ~
+>
+    local nightblossom = require("nightblossom")
+    
+    -- Switch variants
+    nightblossom.set_variant("sakura")
+    
+    -- Toggle transparency
+    local is_transparent = nightblossom.toggle_transparency()
+    
+    -- Override colors
+    nightblossom.override_colors({
+      bg = "#000000",
+      fg = "#ffffff"
+    })
+<
+
+==============================================================================
+PLUGIN INTEGRATION                                 *nightblossom-plugins*
+
+TreeSitter ~
+    Comprehensive syntax highlighting for all TreeSitter-supported
+    languages. Includes highlighting for:
+    • Variables, constants, and identifiers
+    • Functions, methods, and constructors
+    • Keywords and operators
+    • Strings, numbers, and booleans
+    • Comments and documentation
+    • Markup and diff highlighting
+    • HTML/XML tags and attributes
+
+Telescope ~
+    Custom highlighting for Telescope fuzzy finder:
+    • Border and selection colors
+    • Title and prompt styling
+    • Multi-selection indicators
+    • Matching text highlighting
+
+nvim-cmp ~
+    Completion menu styling:
+    • Item kinds and types
+    • Deprecated items
+    • Matching text
+    • Various completion categories
+
+Lualine ~
+    Statusline themes for all variants with:
+    • Mode-specific colors
+    • Consistent styling across variants
+    • Transparency support
+
+Terminal Integration ~
+    Automatic terminal color configuration:
+    • ANSI color mapping
+    • Bright and normal color variants
+    • Consistent with theme palette
+
+==============================================================================
+CUSTOMIZATION                                      *nightblossom-customization*
+
+Color Overrides ~
+    Override specific colors in the palette:
+>
+    require("nightblossom").override_colors({
+      bg = "#0a0a0a",      -- Darker background
+      fg = "#ffffff",      -- Pure white foreground
+      red = "#ff4444",     -- Brighter red
+      green = "#44ff44",   -- Brighter green
+      purple = "#a855f7",  -- Custom purple
+    })
+<
+
+Highlight Overrides ~
+    Override specific highlight groups:
+>
+    require("nightblossom").override_highlights({
+      Normal = {
+        bg = "#1a1a1a",
+        fg = "#e0e0e0",
+      },
+      Comment = {
+        fg = "#888888",
+        italic = true,
+        bold = true,
+      },
+      Function = {
+        fg = "#ff6b6b",
+        bold = true,
+      },
+    })
+<
+
+Plugin-Specific Overrides ~
+    Customize highlights for specific plugins:
+>
+    -- Telescope overrides
+    require("nightblossom").override_highlights({
+      TelescopeBorder = { fg = "#ff6b6b", bg = "#1a1a1a" },
+      TelescopeSelection = { bg = "#2a2a2a", bold = true },
+    })
+    
+    -- LSP overrides
+    require("nightblossom").override_highlights({
+      LspDiagnosticsError = { fg = "#ff4444", bold = true },
+      LspDiagnosticsWarning = { fg = "#ffaa00", bold = true },
+    })
+<
+
+Filetype-Specific Overrides ~
+    Apply different overrides for different filetypes:
+>
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "python",
+      callback = function()
+        require("nightblossom").override_highlights({
+          Function = { fg = "#ff6b6b", bold = true },
+          Keyword = { fg = "#4ec9b0", bold = true },
+        })
+      end,
+    })
+<
+
+Dynamic Overrides ~
+    Change colors and highlights on the fly:
+>
+    local function make_darker()
+      require("nightblossom").override_colors({
+        bg = "#000000",
+        bg_alt = "#0a0a0a",
+        fg = "#cccccc",
+      })
+    end
+    
+    local function apply_high_contrast()
+      require("nightblossom").override_highlights({
+        Normal = { bg = "#000000", fg = "#ffffff" },
+        Comment = { fg = "#888888", italic = true },
+        String = { fg = "#ffaa00", bold = true },
+      })
+    end
+<
+
+Managing Overrides ~
+    Clear and manage your overrides:
+>
+    -- Clear all overrides
+    require("nightblossom").clear_all_overrides()
+    
+    -- Clear specific override types
+    require("nightblossom").clear_color_overrides()
+    require("nightblossom").clear_highlight_overrides()
+    
+    -- Get current overrides
+    local current_colors = require("nightblossom").get_color_overrides()
+    local current_highlights = require("nightblossom").get_highlight_overrides()
+<
+
+==============================================================================
+EXAMPLES                                               *nightblossom-examples*
+
+Basic Setup ~
+>
+    -- Simple setup with default spring variant
+    require("nightblossom").setup()
+    vim.cmd("colorscheme nightblossom")
+<
+
+Advanced Configuration ~
+>
+    require("nightblossom").setup({
+      variant = "sakura",
+      transparent = true,
+      integrations = {
+        treesitter = true,
+      },
+      overrides = {
+        colors = {
+          bg = "#0f0f0f",
+          fg = "#f0f0f0",
+        },
+        highlights = {
+          Normal = { bg = "#1a1a1a", fg = "#e0e0e0" },
+          Comment = { fg = "#888888", italic = true },
+          Function = { fg = "#ff6b6b", bold = true },
+          String = { fg = "#ffaa00", bold = true },
+        }
+      }
+    })
+<
+
+Dynamic Theme Switching ~
+>
+    -- Function to switch between variants
+    local function cycle_theme()
+      local variants = require("nightblossom").get_variants()
+      local current = require("nightblossom").get_palette()
+      
+      for i, variant in ipairs(variants) do
+        if current.variant == variant then
+          local next_variant = variants[i % #variants + 1]
+          require("nightblossom").set_variant(next_variant)
+          break
+        end
+      end
+    end
+    
+    -- Map to a key
+    vim.keymap.set("n", "<leader>tc", cycle_theme, { desc = "Cycle theme" })
+<
+
+Conditional Configuration ~
+>
+    -- Different themes for different times of day
+    local hour = tonumber(os.date("%H"))
+    
+    if hour >= 6 and hour < 18 then
+      -- Day time: use bright spring theme
+      require("nightblossom").setup({ variant = "spring" })
+    else
+      -- Night time: use gentle pastel theme
+      require("nightblossom").setup({ variant = "pastel" })
+    end
+<
+
+Plugin Integration ~
+>
+    -- Customize Lualine with nightblossom theme
+    require("lualine").setup({
+      options = {
+        theme = "nightblossom-sakura",
+      },
+    })
+    
+    -- Customize Telescope appearance
+    require("nightblossom").override_highlights({
+      TelescopeBorder = { fg = "#ff6b6b", bg = "#1a1a1a" },
+      TelescopeSelection = { bg = "#2a2a2a", bold = true },
+      TelescopeTitle = { fg = "#ff6b6b", bold = true },
+    })
+<
+
+==============================================================================
+TROUBLESHOOTING                                 *nightblossom-troubleshooting*
+
+Common Issues: ~
+
+Colors not applying correctly ~
+    • Ensure the colorscheme is loaded after all plugins
+    • Check for conflicting highlight overrides
+    • Verify the variant name is correct
+
+Transparency not working ~
+    • Make sure your terminal supports transparency
+    • Check if transparency is enabled in your terminal settings
+    • Verify the transparent option is set to true
+
+Plugin highlights not working ~
+    • Ensure the plugin is loaded before nightblossom
+    • Check if the integration is enabled in configuration
+    • Verify the plugin is in the supported plugins list
+
+Performance issues ~
+    • Disable unused integrations
+    • Reduce the number of highlight overrides
+    • Use lazy loading for better startup performance
+
+Debugging: ~
+
+Check current configuration: ~
+>
+    local config = require("nightblossom").get()
+    print(vim.inspect(config))
+<
+
+Check current palette: ~
+>
+    local palette = require("nightblossom").get_palette()
+    print(vim.inspect(palette))
+<
+
+Check current overrides: ~
+>
+    local color_overrides = require("nightblossom").get_color_overrides()
+    local highlight_overrides = require("nightblossom").get_highlight_overrides()
+    print("Colors:", vim.inspect(color_overrides))
+    print("Highlights:", vim.inspect(highlight_overrides))
+<
+
+Reset to defaults: ~
+>
+    require("nightblossom").clear_all_overrides()
+    require("nightblossom").setup()
+<
+
+==============================================================================
+CREDITS AND LICENSE                               *nightblossom-credits*
+
+Original VSCode Theme: ~
+    RustedTurnip's night-blossom VSCode theme
+    https://github.com/RustedTurnip/night-blossom
+
+Neovim Port: ~
+    rijulpaul (https://github.com/rijulpaul)
+
+License: ~
+    MIT License - see LICENSE file for details
+
+Contributing: ~
+    Contributions are welcome! Please feel free to submit issues and pull
+    requests for improvements, bug fixes, or new features.
+
+==============================================================================
+vim:tw=78:ts=8:noet:ft=help:norl:
