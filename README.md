@@ -1,10 +1,11 @@
 # 🌸 Nightblossom 🌸
 
+### Bring the brightness of spring to your editor!
+A beautiful, vibrant Neovim colorscheme inspired by spring blossoms with a soft, dreamy aesthetic.
+
 <img src="https://raw.githubusercontent.com/rijulpaul/nightblossom.nvim/refs/heads/assets/transparent.png" />
 
-**Bring the brightness of spring to your editor!**
-
-A beautiful, vibrant Neovim colorscheme inspired by spring blossoms with a soft, dreamy aesthetic.
+>[Image](https://www.freepik.com/free-photo/cherry-blossom-with-soft-focus-sakura-season-spring_11306596.htm) by [Tawatchai07](https://www.freepik.com/author/tawatchai07) on Freepik.
 
 >This theme is a Neovim port of [RustedTurnip's night-blossom](https://github.com/RustedTurnip/night-blossom) VSCode theme, bringing the same spring-inspired aesthetic to Neovim.
 
